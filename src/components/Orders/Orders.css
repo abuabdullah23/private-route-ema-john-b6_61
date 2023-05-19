@@ -1,0 +1,9 @@
+.order-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    /* position: relative; */
+}
+.review-container{
+    margin: 50px;
+    gap: 45px;
+}
