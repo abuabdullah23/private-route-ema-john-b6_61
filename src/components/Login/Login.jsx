@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const Login = () => {
+    const [success, setSuccess] = useState('');
+
+    const { signIn } = useContext(AuthContext);
 
     // sign Up
     const handleSignIn = (event) => {
@@ -11,6 +15,15 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        signIn(email, password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+            })
+            .catch(error=>{
+                console.log(error);
+            })
 
     }
     return (

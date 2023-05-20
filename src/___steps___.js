@@ -8,6 +8,11 @@
  */
 
 /**
- * 
+ * CONTEXT AUTH PROVIDER
+ * 1. create AuthProvider components
+ * 2. create a context and set provider
+ * 3. set the children props
+ * 4. set context value
+ * 5. set the provider
  * 
 */
