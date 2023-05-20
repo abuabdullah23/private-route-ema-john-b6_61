@@ -1,5 +1,5 @@
-import React, { createContext, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import app from '../../firebase/firebase-config';
 
 export const AuthContext = createContext(null);
@@ -9,6 +9,8 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
+    // after loading login page issue fixed
+    const [loading, setLoading] = useState(true);
 
     // create user with email and password
     const createUser = (email, password) => {
@@ -25,8 +27,22 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
+    // Get the currently signed-in user/ observe user auth logged in/logged out
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
+            setLoading(false);
+        });
+        // stop observing while unmounting
+        return () => {
+            return unsubscribe();
+        }
+    }, [])
+
+
     const authInfo = {
         user,
+        loading,
         createUser,
         signIn,
         logOut,

@@ -11,7 +11,7 @@ const Header = () => {
     const handleLogOut = () => {
         logOut()
             .then(result => { })
-            .catch(error=> console.log(error))
+            .catch(error => console.log(error))
     }
     return (
         <nav className='header'>
@@ -24,11 +24,9 @@ const Header = () => {
                 <Link className='right-menu' to="/inventory">Inventory</Link>
                 <Link className='right-menu' to="/login">Login</Link>
                 <Link className='right-menu' to="/sign-up">Sign Up</Link>
-                <Link>
-                    {
-                        user && <p style={{ color: 'white' }}>Welcome {user.displayName} to our website! <button onClick={handleLogOut}>Sign Out</button></p>
-                    }
-                </Link>
+                {
+                    user && <span style={{ color: 'white', margin:'0px 30px' }}>{user.email}<button onClick={handleLogOut} style={{marginLeft:'20px'}}> Sign Out</button></span>
+                }
             </div>
         </nav>
     );
