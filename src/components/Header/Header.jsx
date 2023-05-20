@@ -12,6 +12,7 @@ const Header = () => {
                 <Link className='right-menu' to="/order">Orders</Link>
                 <Link className='right-menu' to="/inventory">Inventory</Link>
                 <Link className='right-menu' to="/login">Login</Link>
+                <Link className='right-menu' to="/sign-up">Sign Up</Link>
             </div>
         </nav>
     );
